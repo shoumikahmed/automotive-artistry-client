@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 export default function Banner() {
   return (
@@ -14,9 +15,12 @@ export default function Banner() {
         <div className="">
           <h1 className="mb-5 text-5xl font-bold">Redefining the Boundaries</h1>
           <h1 className="mb-5 text-5xl font-bold">of Automotive Mastery</h1>
-          <button className="btn bg-transparent text-white hover:text-black">
+          <Link
+            to={"/blog"}
+            className="btn bg-transparent text-white hover:text-black"
+          >
             Learn More
-          </button>
+          </Link>
         </div>
       </div>
     </div>

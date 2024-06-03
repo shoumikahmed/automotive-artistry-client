@@ -1,5 +1,5 @@
 import React from "react";
-import { Outlet } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
 import { useSignOut } from "react-firebase-hooks/auth";
 import auth from "../firebase/firebase.config";
 
@@ -31,15 +31,33 @@ export default function DashboardLayout() {
         <ul className="menu p-4 w-80 min-h-full bg-base-200 text-base-content flex flex-col justify-between">
           {/* Sidebar content here */}
           <div>
-            <li>
-              <a>Sidebar Item 1</a>
+            <li className="pb-4 pt-6 font-semibold">
+              <Link className=" shadow-lg py-3" to={"home"}>
+                Dashboard
+              </Link>
             </li>
-            <li>
-              <a>Sidebar Item 2</a>
+            <li className="pb-4 font-semibold">
+              <Link className=" shadow-lg py-3" to={"/dashboard/all-cars"}>
+                All Cars
+              </Link>
+            </li>
+            <li className="pb-4 font-semibold">
+              <Link className=" shadow-lg py-3" to={"/dashboard/add-cars"}>
+                Add Cars
+              </Link>
             </li>
           </div>
-          <div className="mx-auto mb-10">
-            <button className="btn btn-primary" onClick={handleLogout}>
+          <div className=" mb-10 flex justify-between px-4">
+            <Link
+              to={"/"}
+              className="btn bg-transparent shadow-black hover:text-black hover:bg-white"
+            >
+              home
+            </Link>
+            <button
+              className="btn bg-transparent shadow-black hover:text-black hover:bg-white"
+              onClick={handleLogout}
+            >
               Logout
             </button>
           </div>
