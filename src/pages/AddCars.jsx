@@ -17,7 +17,7 @@ export default function AddCars() {
     const data = { model, brand, price, description, imageUrl };
     console.log(data);
 
-    await fetch("http://localhost:3000/cars", {
+    await fetch("http://localhost:5000/cars", {
       method: "POST",
       headers: {
         "Content-type": "application/json",

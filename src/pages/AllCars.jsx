@@ -5,13 +5,13 @@ export default function AllCars() {
   const [cars, setCars] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:3000/cars")
+    fetch("http://localhost:5000/cars")
       .then((res) => res.json())
       .then((data) => setCars(data));
   }, []);
 
   const handleDeleteCar = (id) => {
-    setCars(cars.filter((car) => car?.id !== id));
+    setCars(cars.filter((car) => car?._id !== id));
   };
 
   return (
