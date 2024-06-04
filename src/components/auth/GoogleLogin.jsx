@@ -6,7 +6,25 @@ export default function GoogleLogin() {
   const [signInWithGoogle, user, loading, error] = useSignInWithGoogle(auth);
 
   const handleGoogleLogin = () => {
-    signInWithGoogle();
+    signInWithGoogle().then((data) => {
+      if (data?.user?.email) {
+        const userInfo = {
+          email: data?.user?.email,
+          name: data?.user?.displayName,
+        };
+        fetch("http://localhost:5000/user", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(userInfo),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            localStorage.setItem("token", data?.token);
+          });
+      }
+    });
   };
   console.log(user, loading, error);
 

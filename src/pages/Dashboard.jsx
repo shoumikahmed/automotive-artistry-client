@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
 import {
   AreaChart,
   Area,
@@ -11,6 +12,8 @@ import {
   Pie,
   Cell,
 } from "recharts";
+import auth from "../firebase/firebase.config";
+import { Link } from "react-router-dom";
 
 const data = [
   { name: "Jan", value: 400 },
@@ -31,9 +34,37 @@ const pieData = [
 const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042"];
 
 const Dashboard = () => {
+  const [user] = useAuthState(auth);
+
+  const [userInfo, setUserInfo] = useState();
+  useEffect(() => {
+    fetch(`http://localhost:5000/user/${user?.email}`)
+      .then((res) => res.json())
+      .then((data) => setUserInfo(data));
+  }, [user]);
+  console.log(userInfo);
+
   return (
     <div className="dashboard">
-      <h1>Dashboard</h1>
+      <h1 className="text-5xl text-inherit text-center my-6 mb-10">
+        Dashboard
+      </h1>
+      <div className="flex justify-between my-8">
+        <h1 className="text-3xl">Profile Information</h1>
+        <Link
+          to={`/dashboard/profile/edit/${userInfo?._id}`}
+          className="btn btn-neutral"
+        >
+          Edit Profile
+        </Link>
+      </div>
+      <div className="card w-96 bg-base-100 shadow-xl mb-16">
+        <div className="card-body">
+          <h2 className="card-title">User: {userInfo?.name}</h2>
+          <p>email: {userInfo?.email}</p>
+        </div>
+      </div>
+
       <div className="charts-container">
         <div className="chart">
           <h2>Area Chart</h2>

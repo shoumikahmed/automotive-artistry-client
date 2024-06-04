@@ -3,11 +3,16 @@ import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
 
 export default function SingleCarCardDashboard({ car, onDelete }) {
+  const token = localStorage.getItem("token");
   const { _id, imageUrl, model, brand, price, description } = car;
 
   const handleDelete = async () => {
     await fetch(`http://localhost:5000/cars/${_id}`, {
       method: "DELETE",
+      headers: {
+        "Content-type": "application/json",
+        authorization: `Bearer ${token}`,
+      },
     })
       .then((res) => res.json())
       .then(() => {

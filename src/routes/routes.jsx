@@ -15,6 +15,7 @@ import CarDetails from "../pages/CarDetails";
 import AllCars from "../pages/AllCars";
 import AddCars from "../pages/AddCars";
 import EditCars from "../pages/EditCars";
+import EditProfile from "../pages/EditProfile";
 
 const router = createBrowserRouter([
   {
@@ -74,6 +75,16 @@ const router = createBrowserRouter([
             <Dashboard></Dashboard>
           </PrivateRoutes>
         ),
+      },
+      {
+        path: "profile/edit/:id",
+        element: (
+          <PrivateRoutes>
+            <EditProfile></EditProfile>
+          </PrivateRoutes>
+        ),
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/user/get/${params.id}`),
       },
       {
         path: "all-cars",

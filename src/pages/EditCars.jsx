@@ -13,6 +13,7 @@ export default function EditCars() {
   const [imageUrl, setImageURL] = useState(car?.imageUrl);
 
   const handleSubmit = async (e) => {
+    const token = localStorage.getItem("token");
     e.preventDefault();
     const form = e.target;
     const brand = form.brand.value;
@@ -28,6 +29,7 @@ export default function EditCars() {
       method: "PATCH",
       headers: {
         "Content-type": "application/json",
+        authorization: `Bearer ${token}`,
       },
       body: JSON.stringify(data),
     })
