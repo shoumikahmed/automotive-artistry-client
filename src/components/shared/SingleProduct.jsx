@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 export default function SingleProduct({ car }) {
-  const { id, imageUrl, model, brand, price } = car;
+  const { _id, imageUrl, model, brand, price } = car;
   return (
     <div className="card w-96 bg-base-100 shadow-xl image-full mx-auto">
       <figure>
@@ -17,7 +17,7 @@ export default function SingleProduct({ car }) {
             Price: ${price}
           </button>
           <Link
-            to={`/cars/${id}`}
+            to={`/cars/${_id}`}
             className="btn bg-transparent text-white hover:text-black"
           >
             See Details
