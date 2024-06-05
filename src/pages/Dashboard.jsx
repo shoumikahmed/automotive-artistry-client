@@ -35,13 +35,18 @@ const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042"];
 
 const Dashboard = () => {
   const [user] = useAuthState(auth);
-
   const [userInfo, setUserInfo] = useState();
+
+  const token = localStorage.getItem("token");
   useEffect(() => {
-    fetch(`http://localhost:5000/user/${user?.email}`)
+    fetch(`http://localhost:5000/user/${user?.email}`, {
+      headers: {
+        authorization: `Bearer ${token}`,
+      },
+    })
       .then((res) => res.json())
       .then((data) => setUserInfo(data));
-  }, [user]);
+  }, [user, token]);
   console.log(userInfo);
 
   return (
@@ -62,6 +67,8 @@ const Dashboard = () => {
         <div className="card-body">
           <h2 className="card-title">User: {userInfo?.name}</h2>
           <p>email: {userInfo?.email}</p>
+          <p>Age: {userInfo?.age}</p>
+          <p>Phone: {userInfo?.mobileNumber}</p>
         </div>
       </div>
 

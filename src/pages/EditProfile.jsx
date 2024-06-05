@@ -1,9 +1,11 @@
 import React from "react";
 import { useLoaderData } from "react-router-dom";
+import Dashboard from "./Dashboard";
 
 export default function EditProfile() {
   const data = useLoaderData();
-  console.log(data);
+  console.log("data:", data);
+  const token = localStorage.getItem("token");
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -17,12 +19,13 @@ export default function EditProfile() {
       name,
       age,
       mobileNumber,
-      email: data?.email,
     };
+
     fetch(`http://localhost:5000/user/${data?.email}`, {
       method: "PATCH",
       headers: {
-        "Content-Type": "application/json",
+        "Content-type": "application/json",
+        authorization: `Bearer ${token}`,
       },
       body: JSON.stringify(userData),
     })
@@ -53,8 +56,8 @@ export default function EditProfile() {
               type="text"
               name="email"
               placeholder="User Email"
-              value={data?.email}
-              disabled
+              defaultValue={data?.email}
+              readOnly
             />
           </div>
           <div className="mt-2">
@@ -63,6 +66,7 @@ export default function EditProfile() {
               type="number"
               name="age"
               placeholder="User Age"
+              defaultValue={data?.age}
             />
           </div>
           <div className="mt-2">
@@ -71,6 +75,7 @@ export default function EditProfile() {
               type="number"
               name="mobileNumber"
               placeholder="User Mobile"
+              defaultValue={data?.mobileNumber}
             />
           </div>
           <div className="mt-2 flex justify-center items-center">

@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import toast from "react-hot-toast";
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useNavigate } from "react-router-dom";
 
 export default function EditCars() {
   const car = useLoaderData();
+  const navigate = useNavigate();
   console.log(car);
 
   const [model, setModel] = useState(car?.model);
@@ -39,6 +40,7 @@ export default function EditCars() {
           console.log(data);
           form.reset();
           toast.success(`Successfully car's data updated`);
+          navigate("/dashboard/all-cars");
         }
       });
   };
