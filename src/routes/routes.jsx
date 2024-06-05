@@ -26,13 +26,16 @@ const router = createBrowserRouter([
       {
         index: true,
         element: <Home></Home>,
-        loader: () => fetch("http://localhost:5000/cars"),
+        loader: () =>
+          fetch("https://automotive-artistry-server.vercel.app/cars"),
       },
       {
         path: "/cars/:id",
         element: <CarDetails></CarDetails>,
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/cars/${params.id}`),
+          fetch(
+            `https://automotive-artistry-server.vercel.app/cars/${params.id}`
+          ),
       },
       {
         path: "/about",
@@ -84,11 +87,14 @@ const router = createBrowserRouter([
           </PrivateRoutes>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/user/get/${params.id}`, {
-            headers: {
-              authorization: `Bearer ${localStorage.getItem("token")}`,
-            },
-          }),
+          fetch(
+            `https://automotive-artistry-server.vercel.app/user/get/${params.id}`,
+            {
+              headers: {
+                authorization: `Bearer ${localStorage.getItem("token")}`,
+              },
+            }
+          ),
       },
       {
         path: "all-cars",
@@ -114,7 +120,9 @@ const router = createBrowserRouter([
           </PrivateRoutes>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/cars/${params.id}`),
+          fetch(
+            `https://automotive-artistry-server.vercel.app/cars/${params.id}`
+          ),
       },
     ],
   },

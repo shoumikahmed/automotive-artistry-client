@@ -26,7 +26,7 @@ export default function Login() {
           email: data?.user?.email,
           name: data?.user?.displayName,
         };
-        fetch("http://localhost:5000/user", {
+        fetch("https://automotive-artistry-server.vercel.app/user", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

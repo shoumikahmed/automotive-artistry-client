@@ -7,7 +7,7 @@ export default function SingleCarCardDashboard({ car, onDelete }) {
   const { _id, imageUrl, model, brand, price, description } = car;
 
   const handleDelete = async () => {
-    await fetch(`http://localhost:5000/cars/${_id}`, {
+    await fetch(`https://automotive-artistry-server.vercel.app/cars/${_id}`, {
       method: "DELETE",
       headers: {
         "Content-type": "application/json",

@@ -39,7 +39,7 @@ const Dashboard = () => {
 
   const token = localStorage.getItem("token");
   useEffect(() => {
-    fetch(`http://localhost:5000/user/${user?.email}`, {
+    fetch(`https://automotive-artistry-server.vercel.app/user/${user?.email}`, {
       headers: {
         authorization: `Bearer ${token}`,
       },

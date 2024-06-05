@@ -18,7 +18,7 @@ export default function AddCars() {
     const data = { model, brand, price, description, imageUrl };
     console.log(data);
 
-    await fetch("http://localhost:5000/cars", {
+    await fetch("https://automotive-artistry-server.vercel.app/cars", {
       method: "POST",
       headers: {
         "Content-type": "application/json",

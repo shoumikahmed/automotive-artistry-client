@@ -1,6 +1,7 @@
 import React from "react";
 import { useLoaderData } from "react-router-dom";
 import Dashboard from "./Dashboard";
+import toast from "react-hot-toast";
 
 export default function EditProfile() {
   const data = useLoaderData();
@@ -21,7 +22,7 @@ export default function EditProfile() {
       mobileNumber,
     };
 
-    fetch(`http://localhost:5000/user/${data?.email}`, {
+    fetch(`https://automotive-artistry-server.vercel.app/user/${data?.email}`, {
       method: "PATCH",
       headers: {
         "Content-type": "application/json",
@@ -30,7 +31,10 @@ export default function EditProfile() {
       body: JSON.stringify(userData),
     })
       .then((res) => res.json())
-      .then((data) => console.log(data));
+      .then((data) => {
+        console.log(data);
+        toast.success(`Successfully user's data updated`);
+      });
   };
 
   return (

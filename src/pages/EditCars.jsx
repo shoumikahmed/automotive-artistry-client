@@ -26,14 +26,17 @@ export default function EditCars() {
     const data = { model, brand, price, description, imageUrl };
     console.log(data);
 
-    await fetch(`http://localhost:5000/cars/${car._id}`, {
-      method: "PATCH",
-      headers: {
-        "Content-type": "application/json",
-        authorization: `Bearer ${token}`,
-      },
-      body: JSON.stringify(data),
-    })
+    await fetch(
+      `https://automotive-artistry-server.vercel.app/cars/${car._id}`,
+      {
+        method: "PATCH",
+        headers: {
+          "Content-type": "application/json",
+          authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(data),
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         if (data) {
