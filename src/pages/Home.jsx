@@ -15,17 +15,6 @@ export default function Home() {
     <div>
       <Banner></Banner>
       <Cars data={data}></Cars>
-      {/* <div className="mx-16">
-        <h1 className="text-4xl my-20 text-center">Our Newest Cars</h1>
-        <div className="grid lg:grid-cols-4 sm:grid-cols-1 gap-6">
-          {cars
-            ?.reverse()
-            ?.slice(0, 4)
-            ?.map((car) => (
-              <CarCards key={car?.id} car={car}></CarCards>
-            ))}
-        </div>
-      </div> */}
       <Diff></Diff>
       <ClientReview></ClientReview>
       <Contact></Contact>
